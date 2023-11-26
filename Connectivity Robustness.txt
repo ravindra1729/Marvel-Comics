@@ -1,0 +1,163 @@
+#Connectivity Robustness
+#CONNECTIVITY ROBUSTNESS ON ATTACKING 50% TOP NODES
+import networkx as nx
+import numpy as np
+import matplotlib.pyplot as plt
+
+nodes = np.loadtxt('characters.txt',dtype=int)
+edges = np.loadtxt('uni_edges.txt',dtype=int)
+top50 = np.loadtxt('Bottom nodes.txt',dtype=int)
+
+G = nx.Graph()
+G.add_nodes_from(nodes)
+h = nx.read_edgelist('uni_edges.txt',create_using=nx.Graph(),nodetype=int)
+G.add_edges_from(h.edges)
+
+R = (len(max(nx.connected_components(G),key=len))/6486)
+print("Initial =",R)
+G.remove_nodes_from(top50)
+
+L = len(max(nx.connected_components(G),key=len))
+R=L/(6486-3243)
+
+R*=1/6486
+
+print("Connectivity Robustness = ",R)
+
+
+
+
+#CONNECTIVITY ROBUSTNESS ON ATTACKING 40% TOP NODES
+nodes = np.loadtxt('characters.txt',dtype=int)
+edges = np.loadtxt('uni_edges.txt',dtype=int)
+top40 = np.loadtxt('Bottom nodes 60%.txt',dtype=int)
+
+G = nx.Graph()
+G.add_nodes_from(nodes)
+h = nx.read_edgelist('uni_edges.txt',create_using=nx.Graph(),nodetype=int)
+G.add_edges_from(h.edges)
+
+R = (len(max(nx.connected_components(G),key=len))/6486)
+print("Initial =",R)
+G.remove_nodes_from(top40)
+L = len(max(nx.connected_components(G),key=len))
+R=L/(6486-2594)
+
+R*=1/6486
+
+print("Connectivity Robustness = ",R)
+
+
+
+
+#CONNECTIVITY ROBUSTNESS ON ATTACKING 30% TOP NODES
+nodes = np.loadtxt('characters.txt',dtype=int)
+edges = np.loadtxt('uni_edges.txt',dtype=int)
+top30 = np.loadtxt('Bottom nodes 70%.txt',dtype=int)
+
+G = nx.Graph()
+G.add_nodes_from(nodes)
+h = nx.read_edgelist('uni_edges.txt',create_using=nx.Graph(),nodetype=int)
+G.add_edges_from(h.edges)
+
+R = (len(max(nx.connected_components(G),key=len))/6486)
+print("Initial =",R)
+G.remove_nodes_from(top30)
+L = len(max(nx.connected_components(G),key=len))
+R=L/(6486-1946)
+
+R*=1/6486
+
+print("Connectivity Robustness = ",R)
+
+
+
+
+#CONNECTIVITY ROBUSTNESS ON ATTACKING 25% TOP NODES
+nodes = np.loadtxt('characters.txt',dtype=int)
+edges = np.loadtxt('uni_edges.txt',dtype=int)
+top25 = np.loadtxt('Bottom nodes 75%.txt',dtype=int)
+
+G = nx.Graph()
+G.add_nodes_from(nodes)
+h = nx.read_edgelist('uni_edges.txt',create_using=nx.Graph(),nodetype=int)
+G.add_edges_from(h.edges)
+
+R = (len(max(nx.connected_components(G),key=len))/6486)
+print("Initial =",R)
+G.remove_nodes_from(top25)
+L = len(max(nx.connected_components(G),key=len))
+R=L/(6486-1621)
+
+R*=1/6486
+
+print("Connectivity Robustness = ",R)
+
+
+
+
+#CONNECTIVITY ROBUSTNESS ON ATTACKING 20% TOP NODES
+nodes = np.loadtxt('characters.txt',dtype=int)
+edges = np.loadtxt('uni_edges.txt',dtype=int)
+top20 = np.loadtxt('Bottom nodes 80%.txt',dtype=int)
+
+G = nx.Graph()
+G.add_nodes_from(nodes)
+h = nx.read_edgelist('uni_edges.txt',create_using=nx.Graph(),nodetype=int)
+G.add_edges_from(h.edges)
+
+R = (len(max(nx.connected_components(G),key=len))/6486)
+print("Initial =",R)
+G.remove_nodes_from(top20)
+L = len(max(nx.connected_components(G),key=len))
+R=L/(6486-1297)
+
+R*=1/6486
+
+print("Connectivity Robustness = ",R)
+
+
+
+
+#CONNECTIVITY ROBUSTNESS ON ATTACKING 10% TOP NODES
+nodes = np.loadtxt('characters.txt',dtype=int)
+edges = np.loadtxt('uni_edges.txt',dtype=int)
+top10 = np.loadtxt('Bottom nodes 90%.txt',dtype=int)
+
+G = nx.Graph()
+G.add_nodes_from(nodes)
+h = nx.read_edgelist('uni_edges.txt',create_using=nx.Graph(),nodetype=int)
+G.add_edges_from(h.edges)
+
+R = (len(max(nx.connected_components(G),key=len))/6486)
+print("Initial =",R)
+G.remove_nodes_from(top10)
+L = len(max(nx.connected_components(G),key=len))
+R=L/(6486-649)
+
+R*=1/6486
+
+print("Connectivity Robustness = ",R)
+
+
+
+
+#CONNECTIVITY ROBUSTNESS ON ATTACKING 5% TOP NODES
+nodes = np.loadtxt('characters.txt',dtype=int)
+edges = np.loadtxt('uni_edges.txt',dtype=int)
+top5 = np.loadtxt('Bottom nodes 95%.txt',dtype=int)
+
+G = nx.Graph()
+G.add_nodes_from(nodes)
+h = nx.read_edgelist('uni_edges.txt',create_using=nx.Graph(),nodetype=int)
+G.add_edges_from(h.edges)
+
+R = (len(max(nx.connected_components(G),key=len))/6486)
+print("Initial =",R)
+G.remove_nodes_from(top5)
+L = len(max(nx.connected_components(G),key=len))
+R=L/(6486-324)
+
+R*=1/6486
+
+print("Connectivity Robustness = ",R)

@@ -1,0 +1,44 @@
+import networkx as nx
+import numpy as np
+from networkx.algorithms import bipartite
+import matplotlib.pyplot as plt
+
+characters=np.loadtxt('characters.txt',dtype=int)
+comics=np.loadtxt('comics.txt',dtype=int)
+B=nx.Graph()
+B.add_nodes_from(characters,bipartite=0)
+B.add_nodes_from(comics,bipartite=1)
+h=nx.read_edgelist('out.txt',create_using=nx.Graph(),nodetype=int)
+B.add_edges_from(h.edges)
+connected = np.loadtxt('connected.txt',dtype=int)
+G=bipartite.weighted_projected_graph(B,connected)
+#G.number_of_nodes()
+#G.number_of_edges()
+    
+eig_cen=nx.eigenvector_centrality(G)
+with open('eigen_cent.txt','w') as f:
+    print(eig_cen, file=f)
+
+eig_cen_sorted=dict(sorted(eig_cen.items(), key=lambda item: item[1],reverse=True))
+
+with open('eig_cen_sorted.txt', 'w') as f:
+    print(eig_cen_sorted, file=f)
+  
+
+ 
+N_top=100
+eig_cen_top_nodes=list(eig_cen_sorted)[0:N_top]    
+print(eig_cen_top_nodes)
+
+d={}
+with open("dict.txt",encoding="utf8") as file:
+    for line in file:
+        line = line.split(':')
+        if not line:
+            continue
+        d[line[0]] = line[1:]
+top_nodes = eig_cen_top_nodes
+
+with open('eig_cen_top_nodes.txt', 'w') as f:
+    for i in range(len(top_nodes)):
+        print(top_nodes[i],"\t:\t",d[str(top_nodes[i])][0],file=f)

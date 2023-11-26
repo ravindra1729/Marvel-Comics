@@ -1,0 +1,54 @@
+#Visualization of top 100 nodes of the graph based on the betweenness centrality of the giant component
+import networkx as nx
+import numpy as np
+from networkx.algorithms import bipartite
+import matplotlib.pyplot as plt
+
+characters=np.loadtxt('characters.txt',dtype=int)
+comics=np.loadtxt('comics.txt',dtype=int)
+B=nx.Graph()
+B.add_nodes_from(characters,bipartite=0)
+B.add_nodes_from(comics,bipartite=1)
+h=nx.read_edgelist('out.txt',create_using=nx.Graph(),nodetype=int)
+B.add_edges_from(h.edges)
+connected = np.loadtxt('connected.txt',dtype=int)
+G=bipartite.weighted_projected_graph(B,connected)
+#G.number_of_nodes()
+#G.number_of_edges()
+    
+between_cen=nx.betweenness_centrality(G)
+with open('between_cen.txt','w') as f:
+    print(between_cen, file=f)
+
+between_cen_sorted=dict(sorted(between_cen.items(), key=lambda item: item[1],reverse=True))
+
+with open('between_cen_sorted.txt', 'w') as f:
+    print(between_cen_sorted, file=f)
+    
+top_sorted_nodes = sorted(between_cen, key=between_cen.get, reverse=True)[:100]
+subgraph = G.subgraph(top_sorted_nodes)
+
+top_nodes = top_sorted_nodes[:10]
+remaining_nodes = top_sorted_nodes[10:]
+
+top_subgraph = G.subgraph(top_nodes)
+remaining_subgraph = G.subgraph(remaining_nodes)
+
+# Draw the graph
+nodes_to_labels = [5306,859,2397,2664,6306,1602,5716,2399,2548,1347]
+
+pos = nx.spring_layout(subgraph)
+
+nx.draw_networkx_nodes(top_subgraph, pos, node_color='r', node_size=20)
+nx.draw_networkx_edges(top_subgraph, pos,edge_color="grey",alpha=0.1)
+nx.draw_networkx_nodes(remaining_subgraph, pos,node_color='b',node_size=1)
+nx.draw_networkx_edges(remaining_subgraph, pos,edge_color="grey",alpha=0.1)
+
+
+# Draw labels only for specified nodes
+labels = {node: node for node in nodes_to_labels}
+nx.draw_networkx_labels(top_subgraph, pos, font_size=7,labels=labels)
+
+# Show the plot
+plt.show()
+plt.savefig('Visualization top nodes.pdf',dpi=50)

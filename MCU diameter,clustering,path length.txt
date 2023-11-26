@@ -1,0 +1,27 @@
+import networkx as nx
+import numpy as np
+import matplotlib.pyplot as plt
+
+characters=np.loadtxt('Char.txt',dtype=str)
+G=nx.Graph()
+G.add_nodes_from(characters)
+h=nx.read_edgelist('MCU_edges.txt',create_using=nx.Graph(),nodetype=str)
+G.add_edges_from(h.edges)
+
+cc = list(max(nx.connected_components(G),key=len))
+file0 = open("connected.txt","w",encoding="utf8")
+for i in cc:
+    file0.write("%s\n"%i)
+file0.close()
+
+connected = np.loadtxt('connected.txt',dtype=str)
+C = G.subgraph(connected)
+
+print(nx.diameter(C))
+
+#Calculating clustering coefficient for C
+average_clustering_coefficient_C = nx.average_clustering(C)
+print("Average_Clustering_Coefficient_C:",average_clustering_coefficient_C)
+# Calculate the average shortest path length for C
+average_shortest_path_length_C = nx.average_shortest_path_length(C)
+print("Average Shortest Path Length for C:", average_shortest_path_length_C)

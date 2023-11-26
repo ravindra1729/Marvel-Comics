@@ -1,0 +1,277 @@
+#Attack on top 50% nodes
+import networkx as nx
+import numpy as np
+from networkx.algorithms import bipartite
+from networkx.utils import not_implemented_for
+from networkx.utils import py_random_state
+import random
+
+characters = np.loadtxt('Bottom nodes.txt',dtype=str)
+G=nx.Graph()
+G.add_nodes_from(characters)
+h=nx.read_edgelist('Bottom_edges.txt',create_using=nx.Graph(),nodetype=int)
+G.add_edges_from(h.edges)
+
+#getting giant component graph
+cc = list(max(nx.connected_components(G),key=len))
+file0 = open("connected50.txt","w")
+for i in cc:
+    file0.write("%d\n"%i)
+file0.close()
+
+connected50 = np.loadtxt('connected50.txt',dtype=int)
+GC = bipartite.weighted_projected_graph(G,connected50)
+
+#Calculating clustering coefficient for GC
+average_clustering_coefficient_GC = nx.average_clustering(GC)
+print("Average_Clustering_Coefficient_GC:",average_clustering_coefficient_GC)
+# Calculate the average shortest path length for GC
+average_shortest_path_length_GC = nx.average_shortest_path_length(GC)
+print("Average Shortest Path Length for GC:", average_shortest_path_length_GC)
+
+
+
+
+#No attack
+import networkx as nx
+import numpy as np
+from networkx.algorithms import bipartite
+from networkx.utils import not_implemented_for
+from networkx.utils import py_random_state
+import random
+
+#characters.txt contains a list of nodes referring to each character
+#comics.txt contains a list of nodes referring to each comic book
+#out.txt coints edge-list of characters and comics
+characters = np.loadtxt('characters.txt',dtype=int)
+comics = np.loadtxt('comics.txt',dtype=int)
+B = nx.Graph()
+B.add_nodes_from(characters,bipartite=0)
+B.add_nodes_from(comics,bipartite=1)
+h = nx.read_edgelist('out.txt',create_using=nx.Graph(),nodetype=int)
+B.add_edges_from(h.edges)
+
+#creating unipartite network out of bipartite network
+G = bipartite.weighted_projected_graph(B,characters)
+
+#getting giant component graph
+cc = list(max(nx.connected_components(G),key=len))
+file0 = open("connected.txt","w")
+for i in cc:
+    file0.write("%d\n"%i)
+file0.close()
+
+#making a giant component graph
+connected = np.loadtxt('connected.txt',dtype=int)
+GC = bipartite.weighted_projected_graph(B,connected)
+
+#Calculating clustering coefficient for GC
+average_clustering_coefficient_GC = nx.average_clustering(GC)
+print("Average_Clustering_Coefficient_GC:",average_clustering_coefficient_GC)
+# Calculate the average shortest path length for GC
+average_shortest_path_length_GC = nx.average_shortest_path_length(GC)
+print("Average Shortest Path Length for GC:", average_shortest_path_length_GC)
+
+
+
+
+#Attack on 40% top nodes
+import networkx as nx
+import numpy as np
+from networkx.algorithms import bipartite
+from networkx.utils import not_implemented_for
+from networkx.utils import py_random_state
+import random
+
+characters = np.loadtxt('Bottom nodes 60%.txt',dtype=str)
+G=nx.Graph()
+G.add_nodes_from(characters)
+h=nx.read_edgelist('Bottom_edges_60%.txt',create_using=nx.Graph(),nodetype=int)
+G.add_edges_from(h.edges)
+
+#getting giant component graph
+cc = list(max(nx.connected_components(G),key=len))
+file1 = open("connected60.txt","w")
+for i in cc:
+    file1.write("%d\n"%i)
+file1.close()
+
+connected60 = np.loadtxt('connected60.txt',dtype=int)
+GC = bipartite.weighted_projected_graph(G,connected60)
+
+#Calculating clustering coefficient for GC
+average_clustering_coefficient_GC = nx.average_clustering(GC)
+print("Average_Clustering_Coefficient_GC:",average_clustering_coefficient_GC)
+# Calculate the average shortest path length for GC
+average_shortest_path_length_GC = nx.average_shortest_path_length(GC)
+print("Average Shortest Path Length for GC:", average_shortest_path_length_GC)
+
+
+
+
+#Attack on top 30% nodes
+import networkx as nx
+import numpy as np
+from networkx.algorithms import bipartite
+from networkx.utils import not_implemented_for
+from networkx.utils import py_random_state
+import random
+
+characters = np.loadtxt('Bottom nodes 70%.txt',dtype=str)
+G=nx.Graph()
+G.add_nodes_from(characters)
+h=nx.read_edgelist('Bottom_edges_70%.txt',create_using=nx.Graph(),nodetype=int)
+G.add_edges_from(h.edges)
+
+#getting giant component graph
+cc = list(max(nx.connected_components(G),key=len))
+file2 = open("connected70.txt","w")
+for i in cc:
+    file2.write("%d\n"%i)
+file2.close()
+
+connected70 = np.loadtxt('connected70.txt',dtype=int)
+GC = bipartite.weighted_projected_graph(G,connected70)
+
+#Calculating clustering coefficient for GC
+average_clustering_coefficient_GC = nx.average_clustering(GC)
+print("Average_Clustering_Coefficient_GC:",average_clustering_coefficient_GC)
+# Calculate the average shortest path length for GC
+average_shortest_path_length_GC = nx.average_shortest_path_length(GC)
+print("Average Shortest Path Length for GC:", average_shortest_path_length_GC)
+
+
+
+
+#Attack on top 25% nodes
+import networkx as nx
+import numpy as np
+from networkx.algorithms import bipartite
+from networkx.utils import not_implemented_for
+from networkx.utils import py_random_state
+import random
+
+characters = np.loadtxt('Bottom nodes 75%.txt',dtype=str)
+G=nx.Graph()
+G.add_nodes_from(characters)
+h=nx.read_edgelist('Bottom_edges_75%.txt',create_using=nx.Graph(),nodetype=int)
+G.add_edges_from(h.edges)
+
+#getting giant component graph
+cc = list(max(nx.connected_components(G),key=len))
+file3 = open("connected75.txt","w")
+for i in cc:
+    file3.write("%d\n"%i)
+file3.close()
+
+connected75 = np.loadtxt('connected75.txt',dtype=int)
+GC = bipartite.weighted_projected_graph(G,connected75)
+
+#Calculating clustering coefficient for GC
+average_clustering_coefficient_GC = nx.average_clustering(GC)
+print("Average_Clustering_Coefficient_GC:",average_clustering_coefficient_GC)
+# Calculate the average shortest path length for GC
+average_shortest_path_length_GC = nx.average_shortest_path_length(GC)
+print("Average Shortest Path Length for GC:", average_shortest_path_length_GC)
+
+
+
+
+#Attack on top 20% nodes
+import networkx as nx
+import numpy as np
+from networkx.algorithms import bipartite
+from networkx.utils import not_implemented_for
+from networkx.utils import py_random_state
+import random
+
+characters = np.loadtxt('Bottom nodes 80%.txt',dtype=str)
+G=nx.Graph()
+G.add_nodes_from(characters)
+h=nx.read_edgelist('Bottom_edges_80%.txt',create_using=nx.Graph(),nodetype=int)
+G.add_edges_from(h.edges)
+
+#getting giant component graph
+cc = list(max(nx.connected_components(G),key=len))
+file4 = open("connected80.txt","w")
+for i in cc:
+    file4.write("%d\n"%i)
+file4.close()
+
+connected80 = np.loadtxt('connected80.txt',dtype=int)
+GC = bipartite.weighted_projected_graph(G,connected80)
+
+#Calculating clustering coefficient for GC
+average_clustering_coefficient_GC = nx.average_clustering(GC)
+print("Average_Clustering_Coefficient_GC:",average_clustering_coefficient_GC)
+# Calculate the average shortest path length for GC
+average_shortest_path_length_GC = nx.average_shortest_path_length(GC)
+print("Average Shortest Path Length for GC:", average_shortest_path_length_GC)
+
+
+
+
+#Attack on top 10% nodes
+import networkx as nx
+import numpy as np
+from networkx.algorithms import bipartite
+from networkx.utils import not_implemented_for
+from networkx.utils import py_random_state
+import random
+
+characters = np.loadtxt('Bottom nodes 90%.txt',dtype=str)
+G=nx.Graph()
+G.add_nodes_from(characters)
+h=nx.read_edgelist('Bottom_edges_90%.txt',create_using=nx.Graph(),nodetype=int)
+G.add_edges_from(h.edges)
+
+#getting giant component graph
+cc = list(max(nx.connected_components(G),key=len))
+file5 = open("connected90.txt","w")
+for i in cc:
+    file5.write("%d\n"%i)
+file5.close()
+
+connected90 = np.loadtxt('connected90.txt',dtype=int)
+GC = bipartite.weighted_projected_graph(G,connected90)
+
+#Calculating clustering coefficient for GC
+average_clustering_coefficient_GC = nx.average_clustering(GC)
+print("Average_Clustering_Coefficient_GC:",average_clustering_coefficient_GC)
+# Calculate the average shortest path length for GC
+average_shortest_path_length_GC = nx.average_shortest_path_length(GC)
+print("Average Shortest Path Length for GC:", average_shortest_path_length_GC)
+
+
+
+
+#Attack on top 5% nodes
+import networkx as nx
+import numpy as np
+from networkx.algorithms import bipartite
+from networkx.utils import not_implemented_for
+from networkx.utils import py_random_state
+import random
+
+characters = np.loadtxt('Bottom nodes 95%.txt',dtype=str)
+G=nx.Graph()
+G.add_nodes_from(characters)
+h=nx.read_edgelist('Bottom_edges_95%.txt',create_using=nx.Graph(),nodetype=int)
+G.add_edges_from(h.edges)
+
+#getting giant component graph
+cc = list(max(nx.connected_components(G),key=len))
+file6 = open("connected95.txt","w")
+for i in cc:
+    file6.write("%d\n"%i)
+file6.close()
+
+connected95 = np.loadtxt('connected95.txt',dtype=int)
+GC = bipartite.weighted_projected_graph(G,connected95)
+
+#Calculating clustering coefficient for GC
+average_clustering_coefficient_GC = nx.average_clustering(GC)
+print("Average_Clustering_Coefficient_GC:",average_clustering_coefficient_GC)
+# Calculate the average shortest path length for GC
+average_shortest_path_length_GC = nx.average_shortest_path_length(GC)
+print("Average Shortest Path Length for GC:", average_shortest_path_length_GC)

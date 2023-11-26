@@ -1,0 +1,173 @@
+#eigenvector centrality
+import networkx as nx
+import numpy as np
+import matplotlib.pyplot as plt
+
+characters=np.loadtxt('Char.txt',dtype=str)
+G=nx.Graph()
+G.add_nodes_from(characters)
+h=nx.read_edgelist('MCU_edges.txt',create_using=nx.Graph(),nodetype=str)
+G.add_edges_from(h.edges)
+
+    
+eig_cen=nx.eigenvector_centrality(G)
+with open('eigen_cen.txt','w') as f:
+    print(eig_cen, file=f)
+
+eig_cen_sorted=dict(sorted(eig_cen.items(), key=lambda item: item[1],reverse=True))
+
+with open('eig_cen_sorted.txt', 'w') as f:
+    print(eig_cen_sorted, file=f)
+  
+
+ 
+N_top=20
+eig_cen_top_nodes=list(eig_cen_sorted)[0:N_top]    
+print(eig_cen_top_nodes)
+
+d={}
+with open("Char_name.txt",encoding="utf8") as file:
+    for line in file:
+        line = line.split(':')
+        if not line:
+            continue
+        d[line[0]] = line[1:]
+top_nodes = eig_cen_top_nodes
+
+with open('eig_cen_top_nodes.txt', 'w') as f:
+    for i in range(len(top_nodes)):
+        print(top_nodes[i],"\t:\t",d[str(top_nodes[i])][0],file=f)
+
+
+
+
+
+
+#Degree centrality
+import networkx as nx
+import numpy as np
+from networkx.algorithms import bipartite
+from operator import itemgetter
+
+characters = np.loadtxt('Char.txt',dtype=str)
+
+G = nx.Graph() 
+G.add_nodes_from(characters)
+h = nx.read_edgelist('MCU_edges.txt',create_using=nx.Graph(),nodetype=str)
+G.add_edges_from(h.edges)
+G.nodes(data=True)
+
+
+#Computing degree centrality
+degCent = nx.degree_centrality(G)
+
+with open('degCent.txt', 'w') as f:
+    print(degCent, file=f)
+    
+    
+degCent_sorted=dict(sorted(degCent.items(), key=lambda item: item[1],reverse=True))
+with open('degCent_sorted.txt', 'w') as f:
+    print(degCent_sorted, file=f)
+  
+N_top=20
+degcent_top_nodes=list(degCent_sorted)[0:N_top]    
+print(degcent_top_nodes)
+
+d={}
+with open("Char_name.txt",encoding="utf8") as file:
+    for line in file:
+        line = line.split(':')
+        if not line:
+            continue
+        d[line[0]] = line[1:]
+top_nodes = degcent_top_nodes
+
+with open('degcent_top_nodes.txt', 'w') as f:
+    for i in range(len(top_nodes)):
+        print(top_nodes[i],"\t:\t",d[str(top_nodes[i])][0],file=f)
+
+
+
+
+
+
+#Closeness centrality
+import networkx as nx
+import numpy as np
+import matplotlib.pyplot as plt
+
+characters=np.loadtxt('Char.txt',dtype=str)
+G=nx.Graph()
+G.add_nodes_from(characters)
+h=nx.read_edgelist('MCU_edges.txt',create_using=nx.Graph(),nodetype=str)
+G.add_edges_from(h.edges)
+
+closeness_cen=nx.closeness_centrality(G)
+with open('closeness_cen.txt','w') as f:
+    print(closeness_cen,file=f)
+    
+closeness_cen_sorted=dict(sorted(closeness_cen.items(), key=lambda item: item[1],reverse=True))
+
+with open('closeness_cen_sorted.txt','w') as f:
+    print(closeness_cen_sorted, file=f)
+    
+N_top=20
+closeness_cen_top_nodes=list(closeness_cen_sorted)[0:N_top]
+print(closeness_cen_top_nodes)
+
+d={}
+with open("Char_name.txt",encoding="utf8") as file:
+    for line in file:
+        line = line.split(':')
+        if not line:
+            continue
+        d[line[0]] = line[1:]
+top_nodes = closeness_cen_top_nodes
+
+with open('closeness_cen_top_nodes.txt','w') as f:
+    for i in range(len(top_nodes)):
+        print(top_nodes[i],"\t:\t",d[str(top_nodes[i])][0],file=f)
+
+
+
+
+
+
+#Betweenness centrality
+import networkx as nx
+import numpy as np
+import matplotlib.pyplot as plt
+
+characters=np.loadtxt('Char.txt',dtype=str)
+G=nx.Graph()
+G.add_nodes_from(characters)
+h=nx.read_edgelist('MCU_edges.txt',create_using=nx.Graph(),nodetype=str)
+G.add_edges_from(h.edges)
+
+between_cen=nx.betweenness_centrality(G)
+with open('between_cen.txt','w') as f:
+    print(between_cen, file=f)
+
+between_cen_sorted=dict(sorted(between_cen.items(), key=lambda item: item[1],reverse=True))
+
+with open('between_cen_sorted.txt', 'w') as f:
+    print(between_cen_sorted, file=f)
+  
+
+ 
+N_top=20
+between_cen_top_nodes=list(between_cen_sorted)[0:N_top]    
+print(between_cen_top_nodes)
+
+d={}
+with open("Char_name.txt",encoding="utf8") as file:
+    for line in file:
+        line = line.split(':')
+        if not line:
+            continue
+        d[line[0]] = line[1:]
+top_nodes = between_cen_top_nodes
+
+with open('between_cen_top_nodes.txt', 'w') as f:
+    for i in range(len(top_nodes)):
+        print(top_nodes[i],"\t:\t",d[str(top_nodes[i])][0],file=f)

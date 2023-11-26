@@ -1,0 +1,200 @@
+#avg centrality on attacking 50% of the top nodes
+import networkx as nx
+import numpy as np
+import matplotlib.pyplot as plt
+ 
+characters=np.loadtxt('Bottom nodes.txt',dtype=int)
+G=nx.Graph()
+G.add_nodes_from(characters)
+h=nx.read_edgelist('Bottom_edges.txt',create_using=nx.Graph(),nodetype=int)
+G.add_edges_from(h.edges)
+
+between_cen=nx.betweenness_centrality(G)
+np.savetxt("between_cen_bottom50%.txt",list(between_cen),fmt="%s")
+
+def average_betweenness_centrality(graph):
+
+    # Calculate the average betweenness centrality
+    avg_betweenness_centrality = sum(between_cen.values()) / len(between_cen)
+
+    return avg_betweenness_centrality
+
+
+# Calculate the average betweenness centrality
+avg_betweenness_centrality = average_betweenness_centrality(G)
+print(f"Average Betweenness Centrality: {avg_betweenness_centrality}")
+
+
+
+
+#avg centrality on attacking 40% of the top nodes
+import networkx as nx
+import numpy as np
+import matplotlib.pyplot as plt
+ 
+characters=np.loadtxt('Bottom nodes 60%.txt',dtype=int)
+G=nx.Graph()
+G.add_nodes_from(characters)
+h=nx.read_edgelist('Bottom_edges_60%.txt',create_using=nx.Graph(),nodetype=int)
+G.add_edges_from(h.edges)
+
+between_cen=nx.betweenness_centrality(G)
+np.savetxt("between_cen_bottom60%.txt",list(between_cen),fmt="%s")
+
+def average_betweenness_centrality(graph):
+
+    # Calculate the average betweenness centrality
+    avg_betweenness_centrality = sum(between_cen.values()) / len(between_cen)
+
+    return avg_betweenness_centrality
+
+
+# Calculate the average betweenness centrality
+avg_betweenness_centrality = average_betweenness_centrality(G)
+print(f"Average Betweenness Centrality: {avg_betweenness_centrality}")
+
+
+
+
+#avg centrality on attacking 30% of the top nodes
+import networkx as nx
+import numpy as np
+import matplotlib.pyplot as plt
+ 
+characters=np.loadtxt('Bottom nodes 70%.txt',dtype=int)
+G=nx.Graph()
+G.add_nodes_from(characters)
+h=nx.read_edgelist('Bottom_edges_70%.txt',create_using=nx.Graph(),nodetype=int)
+G.add_edges_from(h.edges)
+
+between_cen=nx.betweenness_centrality(G)
+np.savetxt("between_cen_bottom70%.txt",list(between_cen),fmt="%s")
+
+def average_betweenness_centrality(graph):
+
+    # Calculate the average betweenness centrality
+    avg_betweenness_centrality = sum(between_cen.values()) / len(between_cen)
+
+    return avg_betweenness_centrality
+
+
+# Calculate the average betweenness centrality
+avg_betweenness_centrality = average_betweenness_centrality(G)
+print(f"Average Betweenness Centrality: {avg_betweenness_centrality}")
+
+
+
+
+#avg centrality on attacking 25% of the top nodes
+import networkx as nx
+import numpy as np
+import matplotlib.pyplot as plt
+ 
+characters=np.loadtxt('Bottom nodes 75%.txt',dtype=int)
+G=nx.Graph()
+G.add_nodes_from(characters)
+h=nx.read_edgelist('Bottom_edges_75%.txt',create_using=nx.Graph(),nodetype=int)
+G.add_edges_from(h.edges)
+
+between_cen=nx.betweenness_centrality(G)
+np.savetxt("between_cen_bottom75%.txt",list(between_cen),fmt="%s")
+
+def average_betweenness_centrality(graph):
+
+    # Calculate the average betweenness centrality
+    avg_betweenness_centrality = sum(between_cen.values()) / len(between_cen)
+
+    return avg_betweenness_centrality
+
+
+# Calculate the average betweenness centrality
+avg_betweenness_centrality = average_betweenness_centrality(G)
+print(f"Average Betweenness Centrality: {avg_betweenness_centrality}")
+
+
+
+
+#avg centrality on attacking 20% of the top nodes
+import networkx as nx
+import numpy as np
+import matplotlib.pyplot as plt
+ 
+characters=np.loadtxt('Bottom nodes 80%.txt',dtype=int)
+G=nx.Graph()
+G.add_nodes_from(characters)
+h=nx.read_edgelist('Bottom_edges_80%.txt',create_using=nx.Graph(),nodetype=int)
+G.add_edges_from(h.edges)
+
+between_cen=nx.betweenness_centrality(G)
+np.savetxt("between_cen_bottom80%.txt",list(between_cen),fmt="%s")
+
+def average_betweenness_centrality(graph):
+
+    # Calculate the average betweenness centrality
+    avg_betweenness_centrality = sum(between_cen.values()) / len(between_cen)
+
+    return avg_betweenness_centrality
+
+
+# Calculate the average betweenness centrality
+avg_betweenness_centrality = average_betweenness_centrality(G)
+print(f"Average Betweenness Centrality: {avg_betweenness_centrality}")
+
+
+
+
+#avg centrality on attacking 10% of the top nodes
+import networkx as nx
+import numpy as np
+import matplotlib.pyplot as plt
+ 
+characters=np.loadtxt('Bottom nodes 90%.txt',dtype=int)
+G=nx.Graph()
+G.add_nodes_from(characters)
+h=nx.read_edgelist('Bottom_edges_90%.txt',create_using=nx.Graph(),nodetype=int)
+G.add_edges_from(h.edges)
+
+between_cen=nx.betweenness_centrality(G)
+np.savetxt("between_cen_bottom90%.txt",list(between_cen),fmt="%s")
+
+def average_betweenness_centrality(graph):
+
+    # Calculate the average betweenness centrality
+    avg_betweenness_centrality = sum(between_cen.values()) / len(between_cen)
+
+    return avg_betweenness_centrality
+
+
+# Calculate the average betweenness centrality
+avg_betweenness_centrality = average_betweenness_centrality(G)
+print(f"Average Betweenness Centrality: {avg_betweenness_centrality}")
+
+
+
+
+#avg centrality on attacking 5% of the top nodes
+import networkx as nx
+import numpy as np
+import matplotlib.pyplot as plt
+ 
+characters=np.loadtxt('Bottom nodes 95%.txt',dtype=int)
+G=nx.Graph()
+G.add_nodes_from(characters)
+h=nx.read_edgelist('Bottom_edges_95%.txt',create_using=nx.Graph(),nodetype=int)
+G.add_edges_from(h.edges)
+
+between_cen=nx.betweenness_centrality(G)
+np.savetxt("between_cen_bottom95%.txt",list(between_cen),fmt="%s")
+
+def average_betweenness_centrality(graph):
+
+    # Calculate the average betweenness centrality
+    avg_betweenness_centrality = sum(between_cen.values()) / len(between_cen)
+
+    return avg_betweenness_centrality
+
+
+# Calculate the average betweenness centrality
+avg_betweenness_centrality = average_betweenness_centrality(G)
+print(f"Average Betweenness Centrality: {avg_betweenness_centrality}")
+

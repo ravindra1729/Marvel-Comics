@@ -1,0 +1,114 @@
+import networkx as nx
+import numpy as np
+from networkx.algorithms import bipartite
+import matplotlib.pyplot as plt
+ 
+characters=np.loadtxt('characters.txt',dtype=int)
+comics=np.loadtxt('comics.txt',dtype=int)
+B=nx.Graph()
+B.add_nodes_from(characters,bipartite=0)
+B.add_nodes_from(comics,bipartite=1)
+h=nx.read_edgelist('out.txt',create_using=nx.Graph(),nodetype=int)
+B.add_edges_from(h.edges)
+#connected = np.loadtxt('connected.txt',dtype=int)
+G=bipartite.weighted_projected_graph(B,characters)
+#G.number_of_nodes()
+#G.number_of_nodes()
+#G.number_of_edges()
+
+between_cen=nx.betweenness_centrality(G)
+with open('between_cen.txt','w') as f:
+    print(between_cen, file=f)
+
+between_cen_sorted = dict(sorted(between_cen.items(), key=lambda item: item[1],reverse=True))
+
+with open('between_cen_sorted.txt', 'w') as f:
+    print(between_cen_sorted, file=f)
+
+
+#FOR TOP 50% NODES
+N_top50percent = 3243
+cen_top_50percentnodes=list(between_cen_sorted)[0:N_top50percent]
+#print(cen_top_50percentnodes)
+ 
+np.savetxt("Top nodes.txt",list(cen_top_50percentnodes),fmt="%s")
+#S = G.remove_nodes_from(cen_top_50percentnodes)
+
+
+
+#FOR TOP 40% NODES
+N_top40percent = 2594
+cen_top_40percentnodes=list(between_cen_sorted)[0:N_top40percent]
+#print(cen_top_50percentnodes)
+ 
+np.savetxt("Top nodes 40%.txt",list(cen_top_40percentnodes),fmt="%s")
+#S = G.remove_nodes_from(cen_top_50percentnodes)
+
+
+#FOR TOP 30% NODES
+N_top30percent = 1946
+cen_top_30percentnodes=list(between_cen_sorted)[0:N_top30percent]
+#print(cen_top_50percentnodes)
+ 
+np.savetxt("Top nodes 30%.txt",list(cen_top_30percentnodes),fmt="%s")
+#S = G.remove_nodes_from(cen_top_50percentnodes)
+
+
+#FOR TOP 25% NODES
+N_top25percent = 1622
+cen_top_25percentnodes=list(between_cen_sorted)[0:N_top25percent]
+#print(cen_top_50percentnodes)
+ 
+np.savetxt("Top nodes 25%.txt",list(cen_top_25percentnodes),fmt="%s")
+#S = G.remove_nodes_from(cen_top_50percentnodes)
+
+
+#FOR TOP 20% NODES
+N_top20percent = 1297
+cen_top_20percentnodes=list(between_cen_sorted)[0:N_top20percent]
+#print(cen_top_50percentnodes)
+
+np.savetxt("Top nodes 20%.txt",list(cen_top_20percentnodes),fmt="%s")
+#S = G.remove_nodes_from(cen_top_50percentnodes)
+
+
+
+#FOR TOP 10% NODES
+N_top10percent = 649
+cen_top_10percentnodes=list(between_cen_sorted)[0:N_top10percent]
+#print(cen_top_50percentnodes)
+ 
+np.savetxt("Top nodes 10%.txt",list(cen_top_10percentnodes),fmt="%s")
+#S = G.remove_nodes_from(cen_top_50percentnodes)
+#np.savetxt("Top_edges_10%.txt",list(G.edges()),fmt="%s")
+
+
+#FOR TOP 5% NODES
+N_top5percent = 324
+cen_top_5percentnodes=list(between_cen_sorted)[0:N_top5percent]
+#print(cen_top_50percentnodes)
+ 
+np.savetxt("Top nodes 5%.txt",list(cen_top_5percentnodes),fmt="%s")
+#S = G.remove_nodes_from(cen_top_50percentnodes)
+#np.savetxt("Top_edges_5%.txt",list(G.edges()),fmt="%s")
+
+
+#TOP 100 NODES
+N_top100percent = 100
+cen_top_100percentnodes=list(between_cen_sorted)[0:N_top100percent]
+#print(cen_top_50percentnodes)
+ 
+np.savetxt("Top 100 nodes.txt",list(cen_top_100percentnodes),fmt="%s")
+
+
+BOTTOM NODES AND EDGES
+
+P = list(cen_top_50percentnodes)
+G.remove_nodes_from(P)
+
+print(list(G.nodes))
+np.savetxt("Bottom nodes.txt",list(G.nodes),fmt="%s")
+
+np.savetxt("Bottom_edges.txt",list(G.edges()),fmt="%s")
+#S.number_of_nodes()
+#S.number_of_edges()

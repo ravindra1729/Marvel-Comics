@@ -1,0 +1,298 @@
+#Attack on top 50% nodes
+import networkx as nx
+import numpy as np
+
+characters = np.loadtxt('Bottom nodes.txt',dtype=str)
+G=nx.Graph()
+G.add_nodes_from(characters)
+h=nx.read_edgelist('Bottom_edges.txt',create_using=nx.Graph(),nodetype=int)
+G.add_edges_from(h.edges)
+
+freq = nx.degree_histogram(G) #this will give the list of frequency of each degree.
+degrees = range(len(freq)) # this will give numbers from 0 to highest degree.
+p = []
+a = 0
+deg = 0
+avg = 0
+maximum = 0
+loc = 0
+
+#average-degree calculation
+for i in G.nodes():
+    deg+=G.degree[i]
+    if(G.degree[i]>maximum):
+        maximum = G.degree[i]
+        loc = i
+avg = deg/len(G.degree)
+
+for i in range(len(freq)):
+    a = freq[i]/3243 #as number of nodes after deleting half of the nodes is 3243
+    p.append(a)
+    
+print("Average Degree :",avg)
+print("Maximum Degree :",maximum,"which corresponds to node :",loc)
+
+
+
+
+#Attack on top 40% nodes
+import networkx as nx
+import numpy as np
+
+characters = np.loadtxt('Bottom nodes 60%.txt',dtype=str)
+G=nx.Graph()
+G.add_nodes_from(characters)
+h=nx.read_edgelist('Bottom_edges_60%.txt',create_using=nx.Graph(),nodetype=int)
+G.add_edges_from(h.edges)
+
+freq = nx.degree_histogram(G) #this will give the list of frequency of each degree.
+degrees = range(len(freq)) # this will give numbers from 0 to highest degree.
+p = []
+a = 0
+deg = 0
+avg = 0
+maximum = 0
+loc = 0
+
+#average-degree calculation
+for i in G.nodes():
+    deg+=G.degree[i]
+    if(G.degree[i]>maximum):
+        maximum = G.degree[i]
+        loc = i
+avg = deg/len(G.degree)
+
+for i in range(len(freq)):
+    a = freq[i]/3243 #as number of nodes after deleting half of the nodes is 3243
+    p.append(a)
+    
+print("Average Degree :",avg)
+print("Maximum Degree :",maximum,"which corresponds to node :",loc)
+
+
+
+
+#Attack on top 30% nodes
+import networkx as nx
+import numpy as np
+
+characters = np.loadtxt('Bottom nodes 70%.txt',dtype=str)
+G=nx.Graph()
+G.add_nodes_from(characters)
+h=nx.read_edgelist('Bottom_edges_70%.txt',create_using=nx.Graph(),nodetype=int)
+G.add_edges_from(h.edges)
+
+freq = nx.degree_histogram(G) #this will give the list of frequency of each degree.
+degrees = range(len(freq)) # this will give numbers from 0 to highest degree.
+p = []
+a = 0
+deg = 0
+avg = 0
+maximum = 0
+loc = 0
+
+#average-degree calculation
+for i in G.nodes():
+    deg+=G.degree[i]
+    if(G.degree[i]>maximum):
+        maximum = G.degree[i]
+        loc = i
+avg = deg/len(G.degree)
+
+for i in range(len(freq)):
+    a = freq[i]/3243 #as number of nodes after deleting half of the nodes is 3243
+    p.append(a)
+    
+print("Average Degree :",avg)
+print("Maximum Degree :",maximum,"which corresponds to node :",loc)
+
+
+
+
+#Attack on top 25% nodes
+import networkx as nx
+import numpy as np
+
+characters = np.loadtxt('Bottom nodes 75%.txt',dtype=str)
+G=nx.Graph()
+G.add_nodes_from(characters)
+h=nx.read_edgelist('Bottom_edges_75%.txt',create_using=nx.Graph(),nodetype=int)
+G.add_edges_from(h.edges)
+
+freq = nx.degree_histogram(G) #this will give the list of frequency of each degree.
+degrees = range(len(freq)) # this will give numbers from 0 to highest degree.
+p = []
+a = 0
+deg = 0
+avg = 0
+maximum = 0
+loc = 0
+
+#average-degree calculation
+for i in G.nodes():
+    deg+=G.degree[i]
+    if(G.degree[i]>maximum):
+        maximum = G.degree[i]
+        loc = i
+avg = deg/len(G.degree)
+
+for i in range(len(freq)):
+    a = freq[i]/3243 #as number of nodes after deleting half of the nodes is 3243
+    p.append(a)
+    
+print("Average Degree :",avg)
+print("Maximum Degree :",maximum,"which corresponds to node :",loc)
+
+
+
+
+#Attack on top 20% nodes
+import networkx as nx
+import numpy as np
+
+characters = np.loadtxt('Bottom nodes 80%.txt',dtype=str)
+G=nx.Graph()
+G.add_nodes_from(characters)
+h=nx.read_edgelist('Bottom_edges_80%.txt',create_using=nx.Graph(),nodetype=int)
+G.add_edges_from(h.edges)
+
+freq = nx.degree_histogram(G) #this will give the list of frequency of each degree.
+degrees = range(len(freq)) # this will give numbers from 0 to highest degree.
+p = []
+a = 0
+deg = 0
+avg = 0
+maximum = 0
+loc = 0
+
+#average-degree calculation
+for i in G.nodes():
+    deg+=G.degree[i]
+    if(G.degree[i]>maximum):
+        maximum = G.degree[i]
+        loc = i
+avg = deg/len(G.degree)
+
+for i in range(len(freq)):
+    a = freq[i]/3243 #as number of nodes after deleting half of the nodes is 3243
+    p.append(a)
+    
+print("Average Degree :",avg)
+print("Maximum Degree :",maximum,"which corresponds to node :",loc)
+
+
+
+
+#Attack on top 10% nodes
+import networkx as nx
+import numpy as np
+
+characters = np.loadtxt('Bottom nodes 90%.txt',dtype=str)
+G=nx.Graph()
+G.add_nodes_from(characters)
+h=nx.read_edgelist('Bottom_edges_90%.txt',create_using=nx.Graph(),nodetype=int)
+G.add_edges_from(h.edges)
+
+freq = nx.degree_histogram(G) #this will give the list of frequency of each degree.
+degrees = range(len(freq)) # this will give numbers from 0 to highest degree.
+p = []
+a = 0
+deg = 0
+avg = 0
+maximum = 0
+loc = 0
+
+#average-degree calculation
+for i in G.nodes():
+    deg+=G.degree[i]
+    if(G.degree[i]>maximum):
+        maximum = G.degree[i]
+        loc = i
+avg = deg/len(G.degree)
+
+for i in range(len(freq)):
+    a = freq[i]/3243 #as number of nodes after deleting half of the nodes is 3243
+    p.append(a)
+    
+print("Average Degree :",avg)
+print("Maximum Degree :",maximum,"which corresponds to node :",loc)
+
+
+
+
+
+#Attack on top 5% nodes
+import networkx as nx
+import numpy as np
+
+characters = np.loadtxt('Bottom nodes 95%.txt',dtype=str)
+G=nx.Graph()
+G.add_nodes_from(characters)
+h=nx.read_edgelist('Bottom_edges_95%.txt',create_using=nx.Graph(),nodetype=int)
+G.add_edges_from(h.edges)
+
+freq = nx.degree_histogram(G) #this will give the list of frequency of each degree.
+degrees = range(len(freq)) # this will give numbers from 0 to highest degree.
+p = []
+a = 0
+deg = 0
+avg = 0
+maximum = 0
+loc = 0
+
+#average-degree calculation
+for i in G.nodes():
+    deg+=G.degree[i]
+    if(G.degree[i]>maximum):
+        maximum = G.degree[i]
+        loc = i
+avg = deg/len(G.degree)
+
+for i in range(len(freq)):
+    a = freq[i]/3243 #as number of nodes after deleting half of the nodes is 3243
+    p.append(a)
+    
+print("Average Degree :",avg)
+print("Maximum Degree :",maximum,"which corresponds to node :",loc)
+
+
+
+
+
+#No attack
+import networkx as nx
+import numpy as np
+from networkx.algorithms import bipartite
+
+characters=np.loadtxt('characters.txt',dtype=int)
+comics=np.loadtxt('comics.txt',dtype=int)
+B=nx.Graph()
+B.add_nodes_from(characters,bipartite=0)
+B.add_nodes_from(comics,bipartite=1)
+h=nx.read_edgelist('out.txt',create_using=nx.Graph(),nodetype=int)
+B.add_edges_from(h.edges)
+G=bipartite.weighted_projected_graph(B,characters)
+
+freq = nx.degree_histogram(G) #this will give the list of frequency of each degree.
+degrees = range(len(freq)) # this will give numbers from 0 to highest degree.
+p = []
+a = 0
+deg = 0
+avg = 0
+maximum = 0
+loc = 0
+
+#average-degree calculation
+for i in G.nodes():
+    deg+=G.degree[i]
+    if(G.degree[i]>maximum):
+        maximum = G.degree[i]
+        loc = i
+avg = deg/len(G.degree)
+
+for i in range(len(freq)):
+    a = freq[i]/3243 #as number of nodes after deleting half of the nodes is 3243
+    p.append(a)
+    
+print("Average Degree :",avg)
+print("Maximum Degree :",maximum,"which corresponds to node :",loc)

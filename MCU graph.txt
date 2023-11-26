@@ -1,0 +1,19 @@
+import networkx as nx
+import numpy as np
+import matplotlib.pyplot as plt
+
+characters=np.loadtxt('Char.txt',dtype=str)
+G=nx.Graph()
+G.add_nodes_from(characters)
+h=nx.read_edgelist('MCU_edges.txt',create_using=nx.Graph(),nodetype=str)
+G.add_edges_from(h.edges)
+
+components = nx.connected_components(G)
+
+giant_component = max(components, key=len)
+
+giant_subgraph = G.subgraph(giant_component)
+
+# Draw the giant component
+pos = nx.spring_layout(giant_subgraph)  # You can choose different layout algorithms
+nx.draw(giant_subgraph, pos,node_color="red",node_size=100,edge_color="grey",alpha=1)

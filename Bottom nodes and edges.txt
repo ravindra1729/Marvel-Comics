@@ -1,0 +1,49 @@
+import networkx as nx
+import numpy as np
+from networkx.algorithms import bipartite
+import matplotlib.pyplot as plt
+ 
+characters=np.loadtxt('characters.txt',dtype=int)
+comics=np.loadtxt('comics.txt',dtype=int)
+B=nx.Graph()
+B.add_nodes_from(characters,bipartite=0)
+B.add_nodes_from(comics,bipartite=1)
+h=nx.read_edgelist('out.txt',create_using=nx.Graph(),nodetype=int)
+B.add_edges_from(h.edges)
+#connected = np.loadtxt('connected.txt',dtype=int)
+G=bipartite.weighted_projected_graph(B,characters)
+
+tn_5 = np.loadtxt('Top nodes 5%.txt',dtype=int)
+G.remove_nodes_from(tn_5)
+
+print(list(G.nodes))
+np.savetxt("Bottom nodes 5%.txt",list(G.nodes),fmt="%s")
+
+np.savetxt("Bottom_edges_5%.txt",list(G.edges()),fmt="%s")
+
+
+
+
+TOP 100 NODES
+import networkx as nx
+import numpy as np
+from networkx.algorithms import bipartite
+import matplotlib.pyplot as plt
+ 
+characters=np.loadtxt('characters.txt',dtype=int)
+comics=np.loadtxt('comics.txt',dtype=int)
+B=nx.Graph()
+B.add_nodes_from(characters,bipartite=0)
+B.add_nodes_from(comics,bipartite=1)
+h=nx.read_edgelist('out.txt',create_using=nx.Graph(),nodetype=int)
+B.add_edges_from(h.edges)
+#connected = np.loadtxt('connected.txt',dtype=int)
+G=bipartite.weighted_projected_graph(B,characters)
+
+tn_100_nodes = np.loadtxt('Top 100 nodes.txt',dtype=int)
+G.remove_nodes_from(tn_100_nodes)
+
+print(list(G.nodes))
+np.savetxt("Bottom nodes after 100 gone.txt",list(G.nodes),fmt="%s")
+
+np.savetxt("Bottom_edges_after100gone.txt",list(G.edges()),fmt="%s")

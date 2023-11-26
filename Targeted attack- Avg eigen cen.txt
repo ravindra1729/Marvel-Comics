@@ -1,0 +1,238 @@
+#AVERAGE EIGENVECTOR CENTRALITY OF THE WHOLE GRAPH
+import networkx as nx
+import numpy as np
+from networkx.algorithms import bipartite
+import matplotlib.pyplot as plt
+ 
+characters=np.loadtxt('characters.txt',dtype=int)
+comics=np.loadtxt('comics.txt',dtype=int)
+B=nx.Graph()
+B.add_nodes_from(characters,bipartite=0)
+B.add_nodes_from(comics,bipartite=1)
+h=nx.read_edgelist('out.txt',create_using=nx.Graph(),nodetype=int)
+B.add_edges_from(h.edges)
+#connected = np.loadtxt('connected.txt',dtype=int)
+G=bipartite.weighted_projected_graph(B,characters)
+#G.number_of_nodes()
+#G.number_of_nodes()
+#G.number_of_edges()
+
+eigen_cen=nx.eigenvector_centrality(G)
+with open('eigen_cen.txt','w') as f:
+    print(eigen_cen, file=f)
+    
+def average_eigenvector_centrality(graph):
+
+    # Calculate the average eigenvector centrality
+    avg_eigenvector_centrality = sum(eigen_cen.values()) / len(eigen_cen)
+
+    return avg_eigenvector_centrality
+
+
+# Calculate the average eigenvector centrality
+avg_eigenvector_centrality = average_eigenvector_centrality(G)
+print(f"Average Eigenvector Centrality: {avg_eigenvector_centrality}")
+
+
+
+
+#avg eigenvector centrality on attacking 50% of the top nodes
+import networkx as nx
+import numpy as np
+import matplotlib.pyplot as plt
+ 
+characters=np.loadtxt('Bottom nodes.txt',dtype=int)
+G=nx.Graph()
+G.add_nodes_from(characters)
+h=nx.read_edgelist('Bottom_edges.txt',create_using=nx.Graph(),nodetype=int)
+G.add_edges_from(h.edges)
+
+eigen_cen=nx.eigenvector_centrality(G)
+np.savetxt("eigen_cen_bottom50%.txt",list(eigen_cen),fmt="%s")
+
+def average_eigenvector_centrality(graph):
+
+    # Calculate the average eigenvector centrality
+    avg_eigenvector_centrality = sum(eigen_cen.values()) / len(eigen_cen)
+
+    return avg_eigenvector_centrality
+
+
+# Calculate the average eigenvector centrality
+avg_eigenvector_centrality = average_eigenvector_centrality(G)
+print(f"Average Eigenvector Centrality: {avg_eigenvector_centrality}")
+
+
+
+
+#avg eigenvector centrality on attacking 40% of the top nodes
+import networkx as nx
+import numpy as np
+import matplotlib.pyplot as plt
+ 
+characters=np.loadtxt('Bottom nodes 60%.txt',dtype=int)
+G=nx.Graph()
+G.add_nodes_from(characters)
+h=nx.read_edgelist('Bottom_edges_60%.txt',create_using=nx.Graph(),nodetype=int)
+G.add_edges_from(h.edges)
+
+eigen_cen=nx.eigenvector_centrality(G)
+np.savetxt("eigen_cen_bottom60%.txt",list(eigen_cen),fmt="%s")
+
+def average_eigenvector_centrality(graph):
+
+    # Calculate the average eigenvector centrality
+    avg_eigenvector_centrality = sum(eigen_cen.values()) / len(eigen_cen)
+
+    return avg_eigenvector_centrality
+
+
+# Calculate the average eigenvector centrality
+avg_eigenvector_centrality = average_eigenvector_centrality(G)
+print(f"Average Eigenvector Centrality: {avg_eigenvector_centrality}")
+
+
+
+
+#avg eigenvector centrality on attacking 30% of the top nodes
+import networkx as nx
+import numpy as np
+import matplotlib.pyplot as plt
+
+characters=np.loadtxt('Bottom nodes 70%.txt',dtype=int)
+G=nx.Graph()
+G.add_nodes_from(characters)
+h=nx.read_edgelist('Bottom_edges_70%.txt',create_using=nx.Graph(),nodetype=int)
+G.add_edges_from(h.edges)
+
+eigen_cen=nx.eigenvector_centrality(G)
+np.savetxt("eigen_cen_bottom70%.txt",list(eigen_cen),fmt="%s")
+
+def average_eigenvector_centrality(graph):
+
+    # Calculate the average eigenvector centrality
+    avg_eigenvector_centrality = sum(eigen_cen.values()) / len(eigen_cen)
+
+    return avg_eigenvector_centrality
+
+
+# Calculate the average eigenvector centrality
+avg_eigenvector_centrality = average_eigenvector_centrality(G)
+print(f"Average Eigenvector Centrality: {avg_eigenvector_centrality}")
+
+
+
+
+#avg eigenvector centrality on attacking 25% of the top nodes
+import networkx as nx
+import numpy as np
+import matplotlib.pyplot as plt
+ 
+characters=np.loadtxt('Bottom nodes 75%.txt',dtype=int)
+G=nx.Graph()
+G.add_nodes_from(characters)
+h=nx.read_edgelist('Bottom_edges_75%.txt',create_using=nx.Graph(),nodetype=int)
+G.add_edges_from(h.edges)
+
+eigen_cen=nx.eigenvector_centrality(G)
+np.savetxt("eigen_cen_bottom75%.txt",list(eigen_cen),fmt="%s")
+
+def average_eigenvector_centrality(graph):
+
+    # Calculate the average eigenvector centrality
+    avg_eigenvector_centrality = sum(eigen_cen.values()) / len(eigen_cen)
+
+    return avg_eigenvector_centrality
+
+
+# Calculate the average eigenvector centrality
+avg_eigenvector_centrality = average_eigenvector_centrality(G)
+print(f"Average Eigenvector Centrality: {avg_eigenvector_centrality}")
+
+
+
+
+#avg eigenvector centrality on attacking 20% of the top nodes
+import networkx as nx
+import numpy as np
+import matplotlib.pyplot as plt
+ 
+characters=np.loadtxt('Bottom nodes 80%.txt',dtype=int)
+G=nx.Graph()
+G.add_nodes_from(characters)
+h=nx.read_edgelist('Bottom_edges_80%.txt',create_using=nx.Graph(),nodetype=int)
+G.add_edges_from(h.edges)
+
+eigen_cen=nx.eigenvector_centrality(G)
+np.savetxt("eigen_cen_bottom80%.txt",list(eigen_cen),fmt="%s")
+
+def average_eigenvector_centrality(graph):
+
+    # Calculate the average eigenvector centrality
+    avg_eigenvector_centrality = sum(eigen_cen.values()) / len(eigen_cen)
+
+    return avg_eigenvector_centrality
+
+
+# Calculate the average eigenvector centrality
+avg_eigenvector_centrality = average_eigenvector_centrality(G)
+print(f"Average Eigenvector Centrality: {avg_eigenvector_centrality}")
+
+
+
+
+#avg eigenvector centrality on attacking 10% of the top nodes
+import networkx as nx
+import numpy as np
+import matplotlib.pyplot as plt
+ 
+characters=np.loadtxt('Bottom nodes 90%.txt',dtype=int)
+G=nx.Graph()
+G.add_nodes_from(characters)
+h=nx.read_edgelist('Bottom_edges_90%.txt',create_using=nx.Graph(),nodetype=int)
+G.add_edges_from(h.edges)
+
+eigen_cen=nx.eigenvector_centrality(G)
+np.savetxt("eigen_cen_bottom90%.txt",list(eigen_cen),fmt="%s")
+
+def average_eigenvector_centrality(graph):
+
+    # Calculate the average eigenvector centrality
+    avg_eigenvector_centrality = sum(eigen_cen.values()) / len(eigen_cen)
+
+    return avg_eigenvector_centrality
+
+
+# Calculate the average eigenvector centrality
+avg_eigenvector_centrality = average_eigenvector_centrality(G)
+print(f"Average Eigenvector Centrality: {avg_eigenvector_centrality}")
+
+
+
+
+
+#avg eigenvector centrality on attacking 5% of the top nodes
+import networkx as nx
+import numpy as np
+import matplotlib.pyplot as plt
+ 
+characters=np.loadtxt('Bottom nodes 95%.txt',dtype=int)
+G=nx.Graph()
+G.add_nodes_from(characters)
+h=nx.read_edgelist('Bottom_edges_95%.txt',create_using=nx.Graph(),nodetype=int)
+G.add_edges_from(h.edges)
+
+eigen_cen=nx.eigenvector_centrality(G)
+np.savetxt("eigen_cen_bottom95%.txt",list(eigen_cen),fmt="%s")
+
+def average_eigenvector_centrality(graph):
+
+    # Calculate the average eigenvector centrality
+    avg_eigenvector_centrality = sum(eigen_cen.values()) / len(eigen_cen)
+
+    return avg_eigenvector_centrality
+
+
+# Calculate the average eigenvector centrality
+avg_eigenvector_centrality = average_eigenvector_centrality(G)
+print(f"Average Eigenvector Centrality: {avg_eigenvector_centrality}")
