@@ -59,7 +59,11 @@ plt.savefig('deg_dist.png')
 plt.show()
 
 1B) Unipartite Graph
-import math as m
+
+import networkx as nx
+import numpy as np
+import matplotlib.pyplot as plt
+from networkx.algorithms import bipartite
 
 characters = np.loadtxt('characters.txt',dtype=int)
 comics = np.loadtxt('comics.txt',dtype=int)
@@ -150,6 +154,8 @@ with open("dict.txt") as file:
 
 3.1.1 Random Node Removal
 
+import networkx as nx
+import numpy as np
 import random
 nodes = np.loadtxt('characters.txt',dtype=int)
 edges = np.loadtxt('uni_edges.txt',dtype=int)
