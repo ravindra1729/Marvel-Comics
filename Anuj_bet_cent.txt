@@ -1,0 +1,35 @@
+﻿Betweenness Centrality
+
+characters = np.loadtxt('characters.txt',dtype=int)
+comics = np.loadtxt('comics.txt',dtype=int)
+B = nx.Graph()
+B.add_nodes_from(characters,bipartite=0)
+B.add_nodes_from(comics,bipartite=1)
+h = nx.read_edgelist('out.txt',create_using=nx.Graph(),nodetype=int)
+B.add_edges_from(h.edges)
+
+#creating unipartite network out of bipartite network
+G = bipartite.weighted_projected_graph(B,characters)
+#counting betweenness centrality 
+betCent = nx.betweenness_centrality(G)
+#sorting betweenness centrality in descending order
+betCent_sorted=dict(sorted(betCent.items(), key=lambda item: item[1],reverse=True))
+#sorting in a text file
+with open('betCent_sorted.txt','w') as f:
+    print(betCent_sorted,file=f)
+    
+#getting top 100 nodes
+N_top=100
+keys_bet_top=list(betCent_sorted) [0:N_top]
+d = {}
+with open("dict.txt",encoding="utf8") as file:
+    for line in file:
+        line = line.split(':')
+        if not line:
+            continue
+        d[line[0]] = line[1:]
+top_nodes = keys_bet_top
+with open('top_nodes.txt','w') as g:
+    for i in range(len(top_nodes)):
+          print(top_nodes[i],"\t:\t",d[str(top_nodes[i])][0],file=g)
+
