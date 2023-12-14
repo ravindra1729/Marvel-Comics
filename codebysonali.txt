@@ -1,0 +1,156 @@
+﻿import networkx as nx
+import numpy as np
+from networkx.algorithms import bipartite
+import matplotlib.pyplot as plt
+
+
+#characters.txt contains a list of nodes referring to each character
+#comics.txt contains a list of nodes referring to each comic book
+#out.txt coints edge-list of characters and comics
+characters = np.loadtxt('characters.txt',dtype=int)
+comics = np.loadtxt('comics.txt',dtype=int)
+B = nx.Graph()
+B.add_nodes_from(characters,bipartite=0)
+B.add_nodes_from(comics,bipartite=1)
+h = nx.read_edgelist('out.txt',create_using=nx.Graph(),nodetype=int)
+B.add_edges_from(h.edges)
+
+
+#creating unipartite network out of bipartite network
+G = bipartite.weighted_projected_graph(B,characters)
+
+
+#getting giant component graph
+cc = list(max(nx.connected_components(G),key=len))
+file0 = open("connected.txt","w")
+for i in cc:
+    file0.write("%d\n"%i)
+file0.close()
+
+
+#Computing degree centrality
+degCent = nx.degree_centrality(G)
+#storing in a text file
+with open('degCent.txt', 'w') as f:
+    print(degCent, file=f)
+    
+    
+#sorting degree centrality in descending order    
+degCent_sorted=dict(sorted(degCent.items(), key=lambda item: item[1],reverse=True))
+#storing in a text file
+with open('degCent_sorted.txt', 'w') as f:
+    print(degCent_sorted, file=f)
+  
+
+#getting top 100 nodes
+print("The top 100 nodes of the network sorted on the basis of their degree centrality in descending order are:")
+N_top=100
+keys_deg_top=list(degCent_sorted)[0:N_top]    
+d = {}
+with open("dict.txt",encoding="utf8") as file:
+    for line in file:
+        line = line.split(':')
+        if not line:
+            continue
+        d[line[0]] = line[1:]
+top_nodes = keys_deg_top
+for i in range(len(top_nodes)):
+    print(top_nodes[i],"\t:\t",d[str(top_nodes[i])][0])
+
+
+    
+#getting lowest 10 nodes
+print("The lowest 10 nodes of the network sorted on the basis of their degree centrality in descending order are:")
+N_low=10
+keys_deg_low=list(degCent_sorted)[6476:6486]    
+d = {}
+with open("dict.txt",encoding="utf8") as file:
+    for line in file:
+        line = line.split(':')
+        if not line:
+            continue
+        d[line[0]] = line[1:]
+low_nodes = keys_deg_low
+for i in range(len(low_nodes)):
+    print(low_nodes[i],"\t:\t",d[str(low_nodes[i])][0])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#SMALL WORLD 
+#making a giant component graph 
+
+connected = np.loadtxt('connected.txt',dtype=int)
+GC = bipartite.weighted_projected_graph(B,connected)
+
+
+
+#Calculating clustering coefficient for GC
+average_clustering_coefficient_GC = nx.average_clustering(GC)
+print("Average_Clustering_Coefficient_GC:",average_clustering_coefficient_GC)
+
+
+# Calculate the average shortest path length for GC
+average_shortest_path_length_GC = nx.average_shortest_path_length(GC)
+print("Average Shortest Path Length for GC:", average_shortest_path_length_GC)
+
+
+
+
+
+#average-degree calculation for giant component
+deg = 0
+kavg = 0
+maximum = 0
+loc = 0
+for i in GC.nodes():
+    deg+=GC.degree[i]
+    if(GC.degree[i]>maximum):
+        maximum = GC.degree[i]
+        loc = i
+kavg = deg/len(GC.degree)    
+print("Average Degree :",kavg)
+
+
+#p=kavg/n;where n=nodes
+n=6449
+p=kavg/(n)
+print("The fixed value of p is:",p)
+
+#Watt-Strogatz Model
+average_clustering_coefficient=0
+average_shortest_path_length=0
+j=0
+for i in range(25):
+    w=nx.watts_strogatz_graph(n, round(kavg) , p, seed=None)
+    print(w)
+    #Calculating clustering coefficient for w
+    average_clustering_coefficient_w = nx.average_clustering(w)
+    print("Average_Clustering_Coefficient_w:",average_clustering_coefficient_w)
+    average_clustering_coefficient=average_clustering_coefficient+average_clustering_coefficient_w
+
+    # Calculate the average shortest path length for w
+    average_shortest_path_length_w = nx.average_shortest_path_length(w)    
+    print("Average Shortest Path Length for w:", average_shortest_path_length_w)
+    average_shortest_path_length=average_shortest_path_length+ average_shortest_path_length_w
+    
+    j=j+1
+    
+print("Average_Clustering_Coefficient_w for ",j," random graphs",average_clustering_coefficient/j)    
+print("Average_shortest_path_length_w for ",j," random graphs",average_shortest_path_length/j)
+
+#getting the diameter of the giant component.
+print(nx.diameter(GC))
+    
